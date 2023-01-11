@@ -1,28 +1,46 @@
 package web.service;
 
+import org.springframework.stereotype.Service;
 import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarServiceImpl {
+@Service
+public class CarServiceImpl implements CarService {
 
 
+    private ArrayList<Car> cars;
 
-    public static ArrayList<Car> getCars(ArrayList<Car> cars) {
+
+    {
+        cars = new ArrayList<>();
+
+        cars.add(new Car("BMW", "Black", 202));
+        cars.add(new Car("Mercedes", "White", 300));
+        cars.add(new Car("UAZ", "Red", 400));
+        cars.add(new Car("Lamborghini", "Orange", 511));
+        cars.add(new Car("Rolls-Royce", "Brown", 605));
+
+    }
+
+
+    @Override
+    public ArrayList<Car> getCars() {
         return cars;
     }
 
-    public static void sizeTo(List list, int newSize) { // на уменьшение идет нормально, но не увеличивается, что добавить??
-        int size = list.size();
-        if (newSize > size) {
-            for (int i = size; i < newSize; i++) {
-                list.add(null);
-            }
+    @Override
+    public ArrayList<Car> editTable(int count) {
+        ArrayList<Car> countCars = new ArrayList<>();
+        if (count >= cars.size()) {
+            return cars;
         } else {
-            for (int i = newSize; i < size; i++) {
-                list.remove(list.size() - 1);
+            for (int i = 1; i <= count; i++) {
+                countCars.add(cars.get(i));
             }
+            return countCars;
         }
     }
 }
+
