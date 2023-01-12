@@ -19,9 +19,9 @@ public class CarsController {
     }
 
     @GetMapping(value = "/cars")
-    public String createTable(ModelMap model, @RequestParam(value = "count", defaultValue = "5") int count) {
+    public String getCars(ModelMap model, @RequestParam(value = "count", defaultValue = "5") int count) {
 
-        model.addAttribute("cars", carService.editTable(count));
+        model.addAttribute("cars", carService.getCarsById(count));
         model.addAttribute("count", count);
         return "cars";
     }

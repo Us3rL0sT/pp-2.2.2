@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import web.model.Car;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -31,16 +33,32 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public ArrayList<Car> editTable(int count) {
-        ArrayList<Car> countCars = new ArrayList<>();
-        if (count >= cars.size()) {
-            return cars;
-        } else {
-            for (int i = 1; i <= count; i++) {
-                countCars.add(cars.get(i));
-            }
-            return countCars;
-        }
+    public ArrayList<Car> getCarsById(int count) {
+        return (ArrayList<Car>) cars.stream().limit(count).collect(Collectors.toList());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

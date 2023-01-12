@@ -8,6 +8,6 @@ import java.util.List;
 public interface CarService {
     public ArrayList<Car> getCars();
 
-    public ArrayList<Car> editTable(int count);
+    public ArrayList<Car> getCarsById(int count);
 
 }
